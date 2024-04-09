@@ -3,47 +3,305 @@ Including the likes of *top* or *sar*. Or you can also use monitoring programs s
 
 Four Linux system monitoring tools are important to learn in details : 
 
-#### [[Sar]]
+### Sar
 
-System Activity Reporter (sar) is part of the [Sysstat system resource utilities package](https://github.com/sysstat/sysstat). Sar is a do-it-all monitoring tool. It measures CPU activity; memory/paging; interrupts; device load; network; process and thread allocation; and swap space utilization. Sar can be used interactively, but its real value is that it keeps data logs over a long period of time, which you can use to troubleshoot recurring problems and produce reports. To learn more, read our [How to Use the System Activity Reporter (sar)](https://www.linode.com/docs/guides/how-to-use-sar) guide.
+#### What is Sar ? 
+
+**Sar** stands for **System Activity Reporter**. It is a command-line utility for collecting, reporting, and analyzing system activity data on Linux systems. Sar is a part of the **Sysstat package**, which provides various system performance monitoring tools.
+
+Sar gathers data on various system resources and activities, including CPU utilization, memory usage, disk I/O, network traffic, and more. It collects this data at regular intervals and stores it for later analysis. This historical data can be invaluable for diagnosing performance issues, identifying trends, and optimizing system resources.
+
+#### How to install Sar ?
+
+Install package :
+
+```
+sudo apt-get install sysstat
+```
+
+Enable sar in /etc/default/sysstat configuration file : 
+
+```
+ENABLE="true"
+```
+
+Default configurations work but if you want to change them, they are located in :
+
+```
+sudo cat /etc/cron.d/sysstat
+sudo cat /etc/sysstatsysstat
+```
+
+By default, the `debian-sa1` script runs every 10 minutes and collects sar data for historical reference. This data is written to the `/var/log/sysstat/saXX` file, where `XX` is the day of the month. For example, if today is the 24th day of the month, `sa1` writes the sar data to `/var/log/sysstat/sa24`. To change the logging frequency to one minute, change `5-55/10` to `5-55/1`. To make it 2 minutes, change it to `5/55/2`, and so on.
+#### How to use Sar ? 
+
+The syntax to use sar is : 
+
+```
+sudo sar [option] -f /path/to/sar/file
+```
+
+If no sar file is specified it will display the current day sar file
+
+![Sar Current Day](/Assets/sar_default.png)
+
+Linux 6.8.4-200.fc39.x86_64 is the kernel version.
+(fedora) is the hostname.
+x86_64 is the system architecture.
+(4 CPU) is the number of CPU cores available.
+
+You can use man sar to delve into the possible options to use with sar.
 
 
-#### [[Vmstat]]
-
-This virtual memory statistics reporter is a built-in Linux command-line tool. In addition to reporting in detail on virtual memory usage, vmstat also gathers information on memory usage, memory paging, processes, I/O, CPU, and storage scheduling. Unlike sar, vmstat starts on boot. It’s used to report on cumulative activity since the last reboot. Our [Use vmstat to Monitor System Performance](https://www.linode.com/docs/guides/use-vmstat-to-monitor-system-performance) guide includes more information about getting started with this monitoring tool.
 
 
-#### [[Monitorix]]
 
-Monitorix is a free, open-source tool that monitors multiple Linux services and system resources. Monitorix, from version 3.0 on, comes with its own web server. This makes it useful for remote Linux system monitoring. Originally designed for the [Red Hat Enterprise Linux (RHEL)](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) operating system family, Monitorix now works on all major Linux server distributions. Read our [How to use Monitorix for System Monitoring](https://www.linode.com/docs/guides/how-to-use-monitorix-for-system-monitoring) guide to learn more.
+### Vmstat
+
+#### What is vmstat ?
+
+vmstat reports information about processes, memory, paging, block IO, traps, disks and cpu activity.
+
+The  first  report produced gives averages since the last reboot.  Additional reports give information on a sampling period of length delay.  The process and memory reports are instantaneous in either case.
+
+#### How to install vmstat ?
+
+In most linux distribution vmstat is installed by default but if it is not installed on your distro vmstat is included in the procps-ng package.
+
+```
+sudo apt install procps-ng
+```
+
+#### How to use vmstat ?
+
+The syntax to use vmstat is as such : 
+
+```
+sudo vmstat [option] [delay] [count]
+```
+
+![Vmstat with count](/Assets/vmstat.png)
+
+##### Procs
+
+Statistics on running, waiting and blocked processes:
+
+- "r": The run queue, the number of threads ready to be (or already) in "run" mode, waiting for cpu ressources.
+- "b": The blocked queue (or wait queue), the number of threads waiting for ressources other than the CPU. For example, disk, memory, network.
+
+##### Memory
+
+Usage of physical and virtual memory, including swapping statistics:
+
+- "swapd": Used swap space
+- "free": Available memory
+- "buff": Memory used in buffers
+- "cache": Memory used in cache
+
+##### Swap
+
+Swap space usage :
+
+- "si": "Swap in": Memory moved from swap to RAM to be used by active processes
+- "so": "Swap out": Memory moved from RAM to swap to make room for other data in RAM.
+
+##### IO
+
+Statistics on input/output operations on devices:
+
+- "bi": "Block in": Reading from block devices (hard disks) in KiB/s
+- "bo": "Block out": Writing to block devices (hard disks) in KiB/s
+
+##### System
+
+CPU usage by the kernel and processes: 
+
+- "in": "Interrupts": Number of interrupts generated by the system's I/O devices.
+- "cs": "Context Switches": Number of context switches per second.
+
+##### CPU
+
+CPU usage:
+
+- "us": "User time": Operations initiated in user mode : user programs, calculations, etc
+- "sy": "System time": Operations initiated in kernel mode: socket creation, file opening, etc
+- "id": "Idle": Time when the processor is idle.
+- "wa": "Wait": Waiting for a ressource (disk, network, etc)
+- "st": "Steal time": CPU time that has been "stolen" by virtual machines on the same physical host.
+- "gu": "Guest time": CPU time used by guest processes, such as virtual machines or containers.
 
 
-#### [[Nethogs]]
+### Monitorix
 
-This free and open-source program extends the net top tool that tracks bandwidth by process. For example, you might discern that the amount of outbound traffic has increased on your Linux server, but Nethogs helps you identify which process is generating the usage spikes. Other network monitoring utilities only break down the traffic by protocol or subnet. Read our [Get Started Using Nethogs for Network Usage Monitoring](https://www.linode.com/docs/guides/get-started-using-nethogs-for-network-usage-monitoring) guide to learn more about this tool.
+#### What is Monitorix ?
 
-Why using Linux system monitoring programs ? 
-To make sure that :
+As per the [Monitorix Website](https://www.monitorix.org): 
 
-- The hardware is working.
-- The server is up and running.
-- The server resources are sufficient for mission-critical applications and services to work at peak performance.
-- No resource bottlenecks are slowing things down.
-- System administrators are alerted when a KPI fails to meet its specified metric.
-- Data is presented in a visual manner – such as dashboards, graphs, and weather maps — to visualize trends that aren’t obvious in raw data.
+**Monitorix is a free, open source, lightweight system monitoring tool** designed to monitor as many services and system resources as possible. It has been created to be used under **production Linux/UNIX servers**, but due to its simplicity and small size can be used on **embedded devices** as well.
 
-These programs do this by tracking:
+It consists mainly of two programs: a collector, called `monitorix`, which is a Perl daemon that is started automatically like any other system service, and a CGI script called `monitorix.cgi`. Monitorix includes its own HTTP server built in (which is listening by default on port 8080/TCP) to see the statistics graphs, so you aren't forced to install a third-party web server to use it. Just point your browser at `http://localhost:8080/monitorix`.
 
-- The server’s real-time status
-- Data collected over time to enable analysis of long-term trends.
-- Data collected to determine the best use of server resources for mission-critical applications. For example, does [InnoDB](https://en.wikipedia.org/wiki/InnoDB) or [MyISAM](https://en.wikipedia.org/wiki/MyISAM) work best for the database storage engine?
+All of its development was initially created for monitoring Red Hat, Fedora and CentOS Linux systems, so this project was made keeping in mind these type of distributions. Today it runs on different GNU/Linux distributions and even in other UNIX systems like FreeBSD, OpenBSD and NetBSD.
+
+It is currently in active development adding new features, new graphs and correcting bugs in the attempt to offer a great tool for daily systems administration.
+
+Monitorix is an open source project and, just like any other open source project, anyone can contribute with his own time and knowledge.
+
+#### How to install Monitorix ?
+
+Install package :
+
+```
+sudo apt-get install monitorix
+```
+
+Either use the default config or change it on : 
+
+```
+/etc/monitorix/monitorix.conf
+```
+
+After that you can restart the monitorix service :
+
+```
+sudo systemctl enable monitorix
+sudo service monitorix restart
+```
+
+#### How to use Monitorix ?
+
+Access it via your browser :
+
+```
+http://ipaddress:8080/monitorix
+```
+
+![Monitorix Landing Page](/Assets/monitorix_landing.png)
+
+Select All graphs or a particular graph and a time period and click ok :
+
+![Monitorix Graphs ](/Assets/monitorix_graphs.png)
+
+
+Monitorix can keep track of system load, kernel usage, filesystem usage, network traffic, netstat traffic and many more things.
+
+
+### Nethogs
+
+#### What is Nethogs ? 
+
+As per the [Nethogs github page](https://github.com/raboof/nethogs :
+
+NetHogs is a small 'net top' tool. Instead of breaking the traffic down per protocol or per subnet, like most tools do, **it groups bandwidth by process**.
+
+NetHogs does not rely on a special kernel module to be loaded. If there's suddenly a lot of network traffic, you can fire up NetHogs and immediately see which PID is causing this. This makes it easy to identify programs that have gone wild and are suddenly taking up your bandwidth.
+
+Since NetHogs heavily relies on `/proc`, most features are only available on Linux. NetHogs can be built on Mac OS X and FreeBSD, but it will only show connections, not processes.
+
+#### How to install Nethogs
+
+Clone the github repository : 
+
+```
+git clone https://github.com/raboof/nethogs
+```
+
+Install dependencies : 
+
+```
+sudo apt install gcc-c++ libpcap-devel ncurses-devel
+```
+
+Navigate to your nethogs folder  : 
+
+```
+cd /path/to/nethogs
+make
+sudo make install
+hash -r
+```
+
+And then you can start nethogs :
+
+```
+sudo nethogs
+```
+
+
+#### How to use Nethogs ?
+
+Nethogs can be used inside a shell or with a GUI ([using nethogs-qt](http://slist.lilotux.net/linux/nethogs-qt/index_en.html) ), the syntax for nethogs is as such : 
+
+```
+sudo nethogs [option] [port name]
+```
+
+By default, nethogs measures traffic from and to the eth0 interface ( if you are connected via ethernet ) port if no option or port name is specified.
+
+![Nethogs Default](/Assets/nethogs_default.png)
+
+Nethogs can also be used to monitor multiple network ports at once : 
+
+```
+sudo nethogs wlp3s0 tun0
+```
+
+![Nethogs Multiple Interface](/Assets/nethogs_multiple.png)
+
+
+You can check the options by using man nethogs : 
+
+![Nethogs Options](/Assets/nethogs_options.png)
+
+
+### Why using Linux system monitoring programs ? 
+
+Using Linux system monitoring programs serves several purposes:
+
+#### - Ensuring System Stability and Performance: 
+Monitoring programs help ensure that the Linux system is stable and performs optimally. By keeping track of various system metrics, administrators can identify performance bottlenecks, resource-intensive processes, and potential issues that may affect system stability.
+
+#### - Resource Management: 
+Monitoring programs track resource utilization such as CPU, memory, disk, and network usage. This helps administrators allocate resources efficiently, identify resource-hungry processes, and prevent resource exhaustion which could lead to system slowdowns or crashes.
+
+#### - Troubleshooting and Debugging: 
+When issues arise, monitoring programs provide valuable insights into the system's behavior, allowing administrators to troubleshoot and debug problems effectively. They can pinpoint the root cause of performance issues or failures by analyzing system metrics and logs.
+
+#### - Capacity Planning:
+By analyzing historical data collected by monitoring programs, administrators can forecast future resource requirements and plan capacity upgrades accordingly. This proactive approach helps prevent resource shortages and ensures smooth system operation even as workload demands fluctuate.
+
+#### - Security Monitoring: 
+Some monitoring programs offer security-related features, such as detecting unusual network activity, monitoring file integrity, and identifying potential security breaches. By keeping an eye on these aspects, administrators can enhance the overall security posture of the Linux system.
+
+
+These programs track various metrics, including but not limited to:
+
+#### - CPU Usage: Monitoring the utilization of the CPU helps identify processes that are consuming excessive CPU resources, which may indicate performance issues or rogue processes.
+
+#### - Memory Usage: Monitoring memory usage helps administrators identify memory leaks, inefficient memory utilization by processes, and potential memory exhaustion situations.
+
+#### - Disk I/O: Monitoring disk I/O allows administrators to track disk read/write operations and identify performance bottlenecks related to disk usage, such as slow disk access or high disk utilization.
+
+#### - Network Activity: Monitoring network activity helps detect abnormal network behavior, such as unusually high traffic volume or suspicious connections, which could indicate security breaches or network performance issues.
+
+#### - System Uptime: Tracking system uptime provides insights into system reliability and helps identify patterns of downtime or stability issues.
+
+#### - Process Activity: Monitoring process activity allows administrators to track the behavior of running processes, including CPU and memory usage, execution status, and resource consumption.
+
+#### - System Logs: Monitoring system logs helps identify errors, warnings, and other events that may indicate system issues or security threats.
+
+
+Overall, Linux system monitoring programs play a crucial role in maintaining system health, optimizing performance, ensuring security, and facilitating effective troubleshooting and capacity planning.
+
 
 Specifically, Linux system monitors look at:
 
-- Memory usage
-- CPU usage
-- Storage usage, including disk space and Input/Output Operations per Second (IOPS)
-- Network usage
+- **Memory usage**
+- **CPU usage**
+- **Storage usage** including disk space and Input/Output Operations per Second (IOPS)
+- **Network usage**
+
+### Glance 
 
 
 
