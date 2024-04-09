@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d4e3b46b0cc1a13f",
+            "id": "a9bdb83e97940c5c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,32 +18,23 @@
                 "source": true
               }
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "ccb39d00c00bb09a",
+        "type": "tabs",
+        "children": [
           {
-            "id": "a9bdb83e97940c5c",
+            "id": "6e7b807b1e262c02",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
-                "mode": "preview",
-                "source": true
+                "file": "assignment.md",
+                "mode": "source",
+                "source": false
               }
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
-        "id": "d4144bfecfe8ecbe",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "5967e74bfbc497ab",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
             }
           }
         ]
@@ -175,21 +166,24 @@
   },
   "active": "a9bdb83e97940c5c",
   "lastOpenFiles": [
+    "Assets/uptime.png",
+    "Assets/pmap.png",
+    "Assets/ps.png",
+    "Assets/top.png",
+    "assignment.md",
+    "README.md",
+    "Assets/vmstat.png",
     "Assets/glances.png",
     "Nethogs.md",
     "Sar.md",
     "Vmstat.md",
-    "README.md",
     "Monitorix.md",
     "Glance.md",
-    "assignment.md",
-    "Assets/vmstat.png",
     "Assets/sar_default.png",
     "Assets/nethogs_options.png",
     "Assets/nethogs_multiple.png",
     "Assets/nethogs_default.png",
     "Assets/monitorix_graphs.png",
-    "Assets/monitorix_landing.png",
     "Assets",
     "Assets.md",
     "Assets"
