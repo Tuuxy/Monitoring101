@@ -26,7 +26,7 @@
               "type": "markdown",
               "state": {
                 "file": "README.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": true
               }
             }
@@ -175,6 +175,7 @@
   },
   "active": "a9bdb83e97940c5c",
   "lastOpenFiles": [
+    "Assets/glances.png",
     "Nethogs.md",
     "Sar.md",
     "Vmstat.md",

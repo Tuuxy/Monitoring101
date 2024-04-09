@@ -301,8 +301,41 @@ Specifically, Linux system monitors look at:
 - **Storage usage** including disk space and Input/Output Operations per Second (IOPS)
 - **Network usage**
 
-### Glance 
+### Glances
 
+#### What is Glances ?
 
+According to [Glances Github](https://github.com/nicolargo/glances) :
 
--- WIP
+**Glances** is an open-source system cross-platform monitoring tool. It allows real-time monitoring of various aspects of your system such as CPU, memory, disk, network usage etc. It also allows monitoring of running processes, logged in users, temperatures, voltages, fan speeds etc. It also supports container monitoring, it supports different container management systems such as Docker, LXC. The information is presented in an easy to read dashboard and can also be used for remote monitoring of systems via a web interface or command line interface. It is easy to install and use and can be customized to show only the information that you are interested in.
+
+#### How to install Glances ?
+
+```
+pip install --user glances
+```
+
+#### How to use Glances ? 
+
+Glances can be started in your terminal :
+
+```
+glances
+```
+
+It can be started as a web server :
+
+```
+glances -w 
+```
+
+Or even as a server/client mode:
+
+```
+glances -s # On server side
+glances -c <ip> # On client side
+```
+
+![Glances web server](/Assets/glances.png)
+
+## Work In Progress
