@@ -1,0 +1,168 @@
+{
+  "main": {
+    "id": "4c32f541438e2d45",
+    "type": "split",
+    "children": [
+      {
+        "id": "b13ff496a8cbcf57",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d4e3b46b0cc1a13f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "93c46622bb77d49c",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5a74da5b76f6599",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "557473633fe8fba4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ec6f5f94b24ae938",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "21459161888e836c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "195317938eb73ce8",
+    "type": "split",
+    "children": [
+      {
+        "id": "c1d5eb2efbb30b5b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ead714068cc9bcaf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "06e149162ef08a35",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "90d2927e7611ae91",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "44470642f180df8b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "d4e3b46b0cc1a13f",
+  "lastOpenFiles": [
+    "Vmstat.md",
+    "Assets/vmstat.png",
+    "README.md",
+    "Sar.md",
+    "assignment.md",
+    "Nethogs.md",
+    "Monitorix.md",
+    "Assets/sar_default.png",
+    "Assets/nethogs_options.png",
+    "Assets/nethogs_multiple.png",
+    "Assets/nethogs_default.png",
+    "Assets/monitorix_graphs.png",
+    "Assets/monitorix_landing.png",
+    "Assets",
+    "Assets.md",
+    "Assets"
+  ]
+}
